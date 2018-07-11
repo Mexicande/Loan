@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="cn.com.creditloans.ui.fragment.LotteryFragment">
+    <View
+        android:id="@+id/fake_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/statusbar_view_height"
+        android:background="@color/colorPrimary"/>
+    <include layout="@layout/toolbar_back"/>
+    <net.lucode.hackware.magicindicator.MagicIndicator
+        android:id="@+id/magic_indicator"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal" />
+    <cn.com.creditloans.ui.adapter.NoTouchViewPager
+        android:layout_marginTop="10dp"
+        android:id="@+id/viewPager"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+</LinearLayout>

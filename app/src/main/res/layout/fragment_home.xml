@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_color_ee"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="cn.com.creditloans.ui.fragment.HomeFragment">
+    <View
+        android:id="@+id/fake_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/statusbar_view_height"
+        />
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlPrimaryColor="#f2f2f2"
+        app:srlAccentColor="#666"
+        app:srlEnablePreviewInEditMode="false">
+        <!--srlAccentColor srlPrimaryColor 将会改变 Header 和 Footer 的主题颜色-->
+        <!--srlEnablePreviewInEditMode 可以开启和关闭预览功能-->
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_home_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

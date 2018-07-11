@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <cn.bingoogolapple.bgabanner.BGABanner
+        android:id="@+id/new_fragment_banner"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        style="@style/BannerDefaultStyle"
+        app:banner_isNeedShowIndicatorOnOnlyOnePage="true"
+        app:banner_pointDrawable="@drawable/point_selector"
+        app:banner_pointAutoPlayAble="true"
+        app:banner_pointContainerBackground="@android:color/transparent"
+        app:banner_transitionEffect="defaultEffect"
+        >
+    </cn.bingoogolapple.bgabanner.BGABanner>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        >
+        <cn.com.creditloans.view.VerticalViewPager
+            android:id="@+id/new_fragment_vvp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            >
+        </cn.com.creditloans.view.VerticalViewPager>
+        <TextView
+            android:id="@+id/new_fragment_loan_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="今日已有166857人申请"
+            android:textSize="11dp"
+            android:textColor="@color/text_color_red"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8.5dp"
+            />
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_centerVertical="true"
+        android:background="@color/text_color_ef"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_centerVertical="true"
+        android:background="@color/text_color_ef"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="41dp" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" >
+
+            <TextView
+                android:id="@+id/main_creditcard_tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="热门推荐"
+                android:textColor="@color/text_color_00"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/main_creditcard_tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@+id/main_creditcard_tv1"
+                android:text="HOT"
+                android:textColor="#42dca7"
+                android:textSize="14sp"
+                android:typeface="sans" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/main_rv"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:scrollbars="none" >
+    </android.support.v7.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_centerVertical="true"
+        android:background="@color/text_color_ef"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="41dp" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" >
+
+            <TextView
+                android:id="@+id/main_new_tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="新品上线"
+                android:textColor="@color/text_color_00"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/main_new_tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@+id/main_new_tv1"
+                android:text="NEW"
+                android:textColor="#f90000"
+                android:textSize="14sp"
+                android:typeface="sans" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

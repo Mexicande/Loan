@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    app:contentInsetStart="0dp"
+    android:background="@color/colorPrimary"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+        <ImageView
+            android:visibility="gone"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/layout_top_back"
+            android:layout_width="43dp"
+            android:layout_height="28dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="20dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/iv_back"/>
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+</android.support.v7.widget.Toolbar>
