@@ -33,9 +33,10 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".ui.actiivty.HtmlActivity"
-            android:screenOrientation="portrait"
-            />
+        <activity
+            android:name=".ui.actiivty.HtmlActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.actiivty.LoginActivity"></activity>
     </application>
 
 </manifest>

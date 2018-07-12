@@ -21,6 +21,7 @@ import cn.com.creditloans.ui.fragment.CenterFragment;
 import cn.com.creditloans.ui.fragment.FindFragment;
 import cn.com.creditloans.ui.fragment.HomeFragment;
 import cn.com.creditloans.ui.fragment.LotteryFragment;
+import cn.com.creditloans.utils.ActivityUtils;
 import cn.com.creditloans.utils.StatusBarUtil;
 import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.PageBottomTabLayout;
@@ -44,6 +45,7 @@ public class MainActivity extends BaseActivity implements  SelectListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
+        ActivityUtils.startActivity(LoginActivity.class);
     }
 
     @Override
