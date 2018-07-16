@@ -12,8 +12,6 @@ public interface Contacts {
     String TOKEN="phone";
     String MUN="mun";
 
-    String LIMIT="limit";
-
     class Times {
         /** 启动页显示时间 **/
         public static final int LAUCHER_DIPLAY_MILLIS = 2000;

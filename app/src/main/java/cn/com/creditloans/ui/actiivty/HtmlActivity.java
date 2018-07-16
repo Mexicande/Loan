@@ -20,13 +20,14 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.com.creditloans.R;
+import cn.com.creditloans.base.BaseActivity;
 import cn.com.creditloans.utils.DownAPKService;
 import cn.com.creditloans.utils.ToastUtils;
 
 /**
  * @author apple
  */
-public class HtmlActivity extends AppCompatActivity {
+public class HtmlActivity extends BaseActivity {
 
     @BindView(R.id.layout_top_back)
     ImageView layoutTopBack;
@@ -40,11 +41,16 @@ public class HtmlActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_html);
         ButterKnife.bind(this);
         getDate();
 
     }
+
+    @Override
+    public int getLayoutResource() {
+        return R.layout.activity_html;
+    }
+
     private void getDate() {
         String title = getIntent().getStringExtra("title");
         if(TextUtils.isEmpty(title)){
@@ -136,7 +142,7 @@ public class HtmlActivity extends AppCompatActivity {
                 intent.setComponent(null);
                 startActivity(intent);
             } catch (Exception e) {
-                ToastUtils.showToast(this, "请安装最新版支付宝");
+                ToastUtils.showToast("请安装最新版支付宝");
             }
             return true;
         } else if (url.contains("qqapi")) {
@@ -149,7 +155,7 @@ public class HtmlActivity extends AppCompatActivity {
                 intent.setComponent(null);
                 startActivity(intent);
             } catch (Exception e) {
-                ToastUtils.showToast(this, "请安装最新版腾讯QQ");
+                ToastUtils.showToast("请安装最新版腾讯QQ");
             }
             return true;
         } else if (url.contains("tmast://appdetails?")) {

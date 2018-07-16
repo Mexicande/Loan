@@ -49,7 +49,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void setStatusBar() {
-        StatusBarUtil.setColor(this,getResources().getColor(R.color.colorPrimary),114);
+        StatusBarUtil.setColor(this,getResources().getColor(R.color.colorPrimary),32);
     }
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {

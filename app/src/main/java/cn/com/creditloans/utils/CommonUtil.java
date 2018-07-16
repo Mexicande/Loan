@@ -320,14 +320,14 @@ public class CommonUtil {
     public static boolean checkPhone(String phone, boolean toast) {
         if (TextUtils.isEmpty(phone)) {
             if (toast) {
-                ToastUtils.showToast(App.getApp(),"手机号为空");
+                ToastUtils.showToast("手机号为空");
             }
             return false;
         }
         if (phone.length() != 11 || !phone
                 .matches("^((13)|(14)|(15)|(17)|(18))\\d{9}$")) {
             if (toast) {
-                ToastUtils.showToast(App.getApp(),"手机号格式不对");
+                ToastUtils.showToast("手机号格式不对");
             }
             return false;
         }

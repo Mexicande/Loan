@@ -300,8 +300,8 @@ public class SPUtil {
      *
      * @param context
      */
-    public static void clear(Context context) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
+    public static void clear() {
+        SharedPreferences sp = App.getApp().getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
         Editor editor = sp.edit();
         editor.clear();
@@ -356,8 +356,8 @@ public class SPUtil {
      * @param context
      * @param key
      */
-    public static void remove(Context context, String key) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
+    public static void remove(String key) {
+        SharedPreferences sp = App.getApp().getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
         Editor editor = sp.edit();
         editor.remove(key);

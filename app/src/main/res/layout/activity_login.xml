@@ -7,7 +7,7 @@
     xmlns:stv="http://schemas.android.com/apk/res-auto"
     android:background="@color/white_bg"
     tools:context="cn.com.creditloans.ui.actiivty.LoginActivity">
-       <include layout="@layout/toolbar_back"/>
+       <include layout="@layout/toolbar_white"/>
         <LinearLayout
             android:layout_marginTop="60dp"
             android:orientation="vertical"
@@ -35,10 +35,11 @@
                     android:paddingBottom="8dp"
                     android:paddingRight="25dp"
                     android:drawablePadding="15dp"
-                    app:leftDrawableWidth="20dp"
+                    app:leftDrawableWidth="18dp"
                     app:leftDrawableHeight="20dp"
                     android:drawableLeft="@mipmap/icon_tel"
                     android:lines="1"
+                    android:hint="手机号"
                     android:maxLength="11"
                     android:inputType="phone"
                     android:textSize="15sp"
@@ -59,10 +60,11 @@
                     android:paddingRight="25dp"
                     android:paddingLeft="25dp"
                     android:drawablePadding="15dp"
-                    app:leftDrawableWidth="20dp"
+                    app:leftDrawableWidth="18dp"
                     app:leftDrawableHeight="20dp"
                     android:drawableLeft="@mipmap/icon_pwd"
                     android:lines="1"
+                    android:hint="密码"
                     android:maxLength="20"
                     android:inputType="textPassword"
                     android:textSize="15sp"
@@ -83,20 +85,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="立即注册"/>
-              <!--  <Button
-                    android:id="@+id/bt_login"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:text="立即登录"
-                    android:gravity="center"
-                    android:paddingBottom="10dp"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/icon_red_btn_bg"
-                    />-->
             <com.allen.library.SuperButton
                 android:id="@+id/bt_login"
                 android:layout_width="match_parent"
@@ -114,6 +102,29 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 />
-
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:textSize="12sp"
+                    android:paddingBottom="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="登陆/注册即表示同意"/>
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:paddingRight="5dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorPrimary"
+                    android:paddingBottom="5dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="《服务协议》"/>
+            </LinearLayout>
         </LinearLayout>
 </RelativeLayout>

@@ -45,7 +45,6 @@ public class MainActivity extends BaseActivity implements  SelectListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
-        ActivityUtils.startActivity(LoginActivity.class);
     }
 
     @Override

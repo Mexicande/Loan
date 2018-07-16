@@ -31,13 +31,16 @@ public class CaptchaTimeCount extends CountDownTimer {
 	public void onTick(long millisUntilFinished) {
 	    validate_btn.setClickable(false);
 	    validate_btn.setText(millisUntilFinished / 1000 + "s后重发");//   改为  60秒倒计时
-	    validate_btn.setTextColor(context.getResources().getColorStateList(R.color.white)); //颜色
+	    validate_btn.setTextColor(context.getResources().getColorStateList(R.color.dispress_color)); //颜色
+		validate_btn.setBackgroundResource(R.drawable.code_select_bg);
 	}
 	@Override
 	public void onFinish() {
 	    validate_btn.setClickable(true); 
 	    validate_btn.setText(R.string.captcha_btn_resend);//@color/color_63b953
-	    validate_btn.setTextColor(context.getResources().getColorStateList(R.color.white));
+	    validate_btn.setTextColor(context.getResources().getColorStateList(R.color.colorPrimary));
+		validate_btn.setBackgroundResource(R.drawable.code_bg);
+
 	}
 	/**
 	 * 重置

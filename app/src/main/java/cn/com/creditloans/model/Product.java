@@ -43,7 +43,7 @@ public class Product implements Serializable{
         private int number;
         private String img;
         private String minrate;
-        private int product_id;
+        private String product_id;
         private String quota;
         private String name;
         private String maxrate;
@@ -73,11 +73,11 @@ public class Product implements Serializable{
             this.minrate = minrate;
         }
 
-        public int getProduct_id() {
+        public String getProduct_id() {
             return product_id;
         }
 
-        public void setProduct_id(int product_id) {
+        public void setProduct_id(String product_id) {
             this.product_id = product_id;
         }
 
@@ -130,7 +130,7 @@ public class Product implements Serializable{
         private int number;
         private String img;
         private String minrate;
-        private int product_id;
+        private String product_id;
         private String quota;
         private String name;
         private String maxrate;
@@ -161,11 +161,11 @@ public class Product implements Serializable{
             this.minrate = minrate;
         }
 
-        public int getProduct_id() {
+        public String getProduct_id() {
             return product_id;
         }
 
-        public void setProduct_id(int product_id) {
+        public void setProduct_id(String product_id) {
             this.product_id = product_id;
         }
 

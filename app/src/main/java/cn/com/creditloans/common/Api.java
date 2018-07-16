@@ -18,22 +18,17 @@ public interface Api {
     String QUICK_LIST=HOST+"ios/olap/productjs";
 
     interface  LOGIN{
-        /** 新or老用户**/
-        String isOldUser=HOST+"quick/isOldUser";
         /** 验证码获取**/
-        String CODE=HOST+"sms/getcode";
-        /** 验证码效验**/
-        String  CHECKCODE=HOST+"sms/checkCode";
-        /** 登陆**/
-        String  QUICKLOGIN=HOST+"quick/login";
+        String GETCODE=HOST+"ios/olap/getLoginCode";
         /** 完善信息**/
-        String IDENTITY =HOST+"quick/addBasicIdentity";
-
+        String REGISTER =HOST+"ios/olap/register";
+        /**登陆**/
+        String LOGIN=HOST+"ios/olap/login";
     }
 
     interface  STATUS{
-        /** 状态**/
-        String getStatus=HOST+"vest/getStatus";
+        /** 产品详情**/
+        String GETPRODUCT_DETAIL=HOST+"ios/olap/productDetail";
         /**版本更新**/
         String UPDATE=HOST+"vest/version";
     }

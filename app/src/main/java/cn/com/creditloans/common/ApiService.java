@@ -12,6 +12,7 @@ import java.util.Map;
 import cn.com.creditloans.App;
 import cn.com.creditloans.R;
 import cn.com.creditloans.intr.OnRequestDataListener;
+import cn.com.creditloans.utils.SPUtil;
 
 
 /**
@@ -29,8 +30,10 @@ public class ApiService {
 
     private static void newExcuteJsonPost(String url, JSONObject jsonObject, final OnRequestDataListener listener){
         final String netError = App.getApp().getString(R.string.net_error);
+        String token = SPUtil.getString("token");
         OkGo.<String>post(url)
                 .tag(App.getApp())
+                .headers("x-application",token)
                 .upJson(jsonObject)
                 .execute(new StringCallback() {
                     @Override
@@ -42,7 +45,7 @@ public class ApiService {
                                 if(code==200){
                                     listener.requestSuccess(code, jsonObject);
                                 }else {
-                                    listener.requestFailure(code, jsonObject.getString("error_message"));
+                                    listener.requestFailure(code, jsonObject.getString("mgs"));
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

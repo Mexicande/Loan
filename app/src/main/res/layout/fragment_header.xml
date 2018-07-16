@@ -5,19 +5,12 @@
     android:orientation="vertical"
     android:layout_height="wrap_content">
     <TextView
-        android:layout_marginTop="10dp"
+        android:paddingBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textSize="12sp"
         android:textColor="@color/text_color_66"
         android:text="温馨提示：同时申请3个贷款产品成功率更高"/>
-    <View
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/bg_color_cc"
-        android:layout_below="@id/product_title"
-        android:layout_width="match_parent"
-        android:layout_height="0.3dp"/>
+
 </LinearLayout>

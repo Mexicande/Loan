@@ -7,34 +7,31 @@
     android:background="@color/white_bg"
     tools:context="cn.com.creditloans.ui.fragment.CenterFragment">
 
-    <View
-        android:id="@+id/fake_status_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/statusbar_view_height"
-        android:background="@color/colorPrimary"/>
+
     <RelativeLayout
-        android:background="@color/colorPrimary"
+        android:background="@drawable/center_bg"
         android:layout_width="match_parent"
-        android:layout_height="180dp">
+        android:layout_height="200dp">
         <ImageView
-            android:layout_marginBottom="90dp"
-            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/iv_header"
             android:layout_centerHorizontal="true"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@mipmap/logo"/>
         <TextView
-            android:layout_marginBottom="40dp"
-            android:layout_alignParentBottom="true"
+            android:id="@+id/phone"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/iv_header"
             android:textColor="@color/white"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="18500634223"/>
+            android:text="请登录"/>
     </RelativeLayout>
     <com.allen.library.SuperTextView
         android:id="@+id/super_about"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         stv:sLeftTextString="关于我们"
@@ -56,20 +53,17 @@
         stv:sRightIconHeight="15dp"
         stv:sRightIconWidth="10dp">
     </com.allen.library.SuperTextView>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
         <com.allen.library.SuperTextView
             android:id="@+id/quit"
+            android:visibility="gone"
             android:layout_marginBottom="100dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="100dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             stv:sCenterTextString="退出登录"
-            stv:sCenterTextColor="@color/text_color_red"
+            stv:sCenterTextColor="@color/colorPrimary"
             >
         </com.allen.library.SuperTextView>
-    </RelativeLayout>
 
 </LinearLayout>
