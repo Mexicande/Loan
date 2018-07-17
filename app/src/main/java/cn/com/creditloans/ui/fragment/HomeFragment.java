@@ -1,6 +1,9 @@
 package cn.com.creditloans.ui.fragment;
 
 
+import android.content.ActivityNotFoundException;
+import android.content.ClipboardManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,14 +54,18 @@ import cn.com.creditloans.intr.OnRequestDataListener;
 import cn.com.creditloans.intr.SelectListener;
 import cn.com.creditloans.model.Banner;
 import cn.com.creditloans.model.Product;
+import cn.com.creditloans.ui.actiivty.HtmlActivity;
 import cn.com.creditloans.ui.actiivty.LoginActivity;
 import cn.com.creditloans.ui.actiivty.ProductDetailActivity;
 import cn.com.creditloans.ui.adapter.HomePagerAdapter;
+import cn.com.creditloans.ui.adapter.MyViewPagerAdapter;
 import cn.com.creditloans.ui.adapter.ProductAdapter;
 import cn.com.creditloans.utils.FixedSpeedScroller;
+import cn.com.creditloans.utils.LogUtils;
 import cn.com.creditloans.utils.SPUtil;
 import cn.com.creditloans.utils.ToastUtils;
 import cn.com.creditloans.view.VerticalViewPager;
+import cn.com.creditloans.view.indicator.CircleIndicator;
 import cn.com.creditloans.view.vertical.VerticalBannerView;
 
 /**
@@ -79,6 +87,10 @@ public class HomeFragment extends Fragment {
     private Timer timer;
     private int currentIndex;
     private String productId;
+    private final int REQUESTION_CODE=10000;
+    private final int RESULT_CODE=200;
+    private  List<Banner> banners1;
+    private int bannerIndex;
     // 消息滚动滚动
     Handler h = new Handler() {
         public void handleMessage(Message msg) {
@@ -127,7 +139,16 @@ public class HomeFragment extends Fragment {
                 mLisenter.selectTab(1);
             }
         });
-
+        wechat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager cmb = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                if (cmb != null) {
+                    cmb.setText("口袋查询");
+                }
+                getWechatApi();
+            }
+        });
         mProductAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -144,6 +165,41 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+        newFragmentBanner.setDelegate(new BGABanner.Delegate<ImageView, Banner>() {
+            @Override
+            public void onBannerItemClick(BGABanner banner, ImageView itemView, Banner model, int position) {
+                String token = SPUtil.getString("token");
+                if (!TextUtils.isEmpty(model.getBanner_url())) {
+                    if(TextUtils.isEmpty(token)){
+                        bannerIndex=position;
+                        Intent intent=new Intent(getActivity(), LoginActivity.class);
+                        startActivityForResult(intent,REQUESTION_CODE);
+                    }else {
+                        Intent intent = new Intent(getActivity(), HtmlActivity.class);
+                        intent.putExtra("html",model.getBanner_url());
+                        intent.putExtra("title",model.getBanner_name());
+                        startActivity(intent);
+                    }
+                }
+            }
+        });
+    }
+
+    /**
+     * 微信跳转
+     */
+    private void getWechatApi() {
+        try {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            ComponentName cmp = new ComponentName("com.tencent.mm","com.tencent.mm.ui.LauncherUI");
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setComponent(cmp);
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            // TODO: handle exception
+            ToastUtils.showToast("检查到您手机没有安装微信，请安装后使用该功能");
+        }
     }
 
     private void initView() {
@@ -158,16 +214,21 @@ public class HomeFragment extends Fragment {
 
 
     private TextView tvMore;
+    private LinearLayout wechat;
     private View getFooter() {
         View inflate = View.inflate(getActivity(), R.layout.home_foot_layout, null);
         tvMore=inflate.findViewById(R.id.tv_more);
+        wechat=inflate.findViewById(R.id.wechat);
         return inflate;
+
     }
 
     private BGABanner newFragmentBanner;
     private VerticalViewPager mViewPager;
     private TextView fragment_loan_count;
-    private RecyclerView mainRv;
+    private ViewPager viewpage;
+    private MyViewPagerAdapter myViewPagerAdapter;
+    private CircleIndicator mCircleIndicator;
     private View getHeader() {
 
         View inflate = View.inflate(getActivity(), R.layout.header_layout, null);
@@ -175,7 +236,8 @@ public class HomeFragment extends Fragment {
         newFragmentBanner=inflate.findViewById(R.id.new_fragment_banner);
         mViewPager=inflate.findViewById(R.id.new_fragment_vvp);
 
-        mainRv=inflate.findViewById(R.id.main_rv);
+        viewpage=inflate.findViewById(R.id.viewPager);
+        mCircleIndicator=inflate.findViewById(R.id.indicator_default);
         fragment_loan_count=inflate.findViewById(R.id.new_fragment_loan_count);
         newFragmentBanner.setAdapter(new BGABanner.Adapter<ImageView, Banner>() {
             @Override
@@ -247,7 +309,25 @@ public class HomeFragment extends Fragment {
                     //消息
                     mViewPager.setPageTransformer(false,new DefaultTransformer());
                     homePagerAdapter = new HomePagerAdapter(product.getBzsx());
-                    mViewPager.setAdapter(homePagerAdapter);// 配置pager页
+                    mViewPager.setAdapter(homePagerAdapter);
+
+
+                    ArrayList<Fragment>mfragments=new ArrayList<>();
+                    List<Product.JrrmBean> jrrm = product.getJrrm();
+                    int size = product.getJrrm().size();
+                    int i = size / 4;
+                    for(int j=0;j<i; j++){
+                        ArrayList<Product.JrrmBean>list=new ArrayList<>();
+                        for(int k=j*4;k<j*4+4;k++){
+                            list.add(jrrm.get(k));
+                        }
+                        HotFragment hotFragment = HotFragment.newInstance(list);
+                        mfragments.add(hotFragment);
+                    }
+                    myViewPagerAdapter=new MyViewPagerAdapter(getChildFragmentManager(),mfragments);
+                    viewpage.setAdapter(myViewPagerAdapter);
+                    mCircleIndicator.setViewPager(viewpage);
+                    myViewPagerAdapter.registerDataSetObserver(mCircleIndicator.getDataSetObserver());
                     startCycle();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -272,7 +352,7 @@ public class HomeFragment extends Fragment {
                     String data = json.getString("data");
                     Gson gson=new Gson();
                     Banner[] banners = gson.fromJson(data, Banner[].class);
-                    List<Banner> banners1 = Arrays.asList(banners);
+                    banners1 = Arrays.asList(banners);
                     newFragmentBanner.setData(banners1,null);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -303,6 +383,20 @@ public class HomeFragment extends Fragment {
             view.setTranslationY(yPosition);
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==REQUESTION_CODE){
+            if(resultCode==RESULT_CODE){
+                Intent intent = new Intent(getActivity(), HtmlActivity.class);
+                intent.putExtra("html",banners1.get(bannerIndex).getBanner_url());
+                intent.putExtra("title",banners1.get(bannerIndex).getBanner_name());
+                startActivity(intent);
+            }
+        }
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

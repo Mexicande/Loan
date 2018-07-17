@@ -64,8 +64,8 @@ public class QuickFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_quick, container, false);
         unbinder = ButterKnife.bind(this, view);
         initView();
-        getData();
         setListener();
+        getData();
         return view;
     }
 

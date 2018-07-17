@@ -30,7 +30,7 @@ public class App extends Application {
         MobclickAgent.startWithConfigure(new MobclickAgent.UMAnalyticsConfig(this, Contacts.UMENG_KEY
                 ,channel));
         HttpParams params=new HttpParams();
-        String name = getString(R.string.appName);
+        String name = getString(R.string.app_name);
         params.put("name", name);
         params.put("market", channel);
         OkGo.getInstance().init(this)

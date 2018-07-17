@@ -19,6 +19,7 @@
             android:textSize="12sp"
             android:text="更多贷款产品 >"/>
     <LinearLayout
+        android:id="@+id/wechat"
         android:layout_marginTop="15dp"
         android:background="@drawable/more_bg"
         android:layout_width="wrap_content"

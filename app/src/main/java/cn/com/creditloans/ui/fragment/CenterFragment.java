@@ -23,8 +23,10 @@ import butterknife.Unbinder;
 import cn.com.creditloans.R;
 import cn.com.creditloans.intr.LoginListener;
 import cn.com.creditloans.model.LoginEvent;
+import cn.com.creditloans.ui.actiivty.AboutActivity;
 import cn.com.creditloans.ui.actiivty.LoginActivity;
 import cn.com.creditloans.ui.actiivty.RegisterActivity;
+import cn.com.creditloans.utils.ActivityUtils;
 import cn.com.creditloans.utils.LogUtils;
 import cn.com.creditloans.utils.SPUtil;
 import cn.com.creditloans.utils.ToastUtils;
@@ -65,11 +67,11 @@ public class CenterFragment extends Fragment{
         String token = SPUtil.getString("token");
         String phone = SPUtil.getString("phone");
         if(!TextUtils.isEmpty(token)){
-
             String below = phone.substring(0, 3);
             String above = phone.substring(phone.length() - 4, phone.length());
             mPhone.setText(below+"****"+above);
             quit.setVisibility(View.VISIBLE);
+            ivHeader.setImageResource(R.mipmap.iv_user_head);
         }
 
     }
@@ -86,8 +88,11 @@ public class CenterFragment extends Fragment{
                 }
                 break;
             case R.id.super_about:
+                ActivityUtils.startActivity(AboutActivity.class);
                 break;
             case R.id.super_chat:
+                ChatFragment chatFragment=new ChatFragment();
+                chatFragment.show(getFragmentManager(),"wechatFragment");
                 break;
             case R.id.quit:
                 SPUtil.clear();
@@ -95,6 +100,8 @@ public class CenterFragment extends Fragment{
                 quit.setVisibility(View.GONE);
                 Intent intent=new Intent(getActivity(), LoginActivity.class);
                 startActivityForResult(intent,REQUESTION_CODE);
+                ivHeader.setImageResource(R.mipmap.defualt_header);
+
                 break;
             default:
                 break;
@@ -116,6 +123,8 @@ public class CenterFragment extends Fragment{
                 String above = tele.substring(tele.length() - 4, tele.length());
                 mPhone.setText(below+"****"+above);
                 quit.setVisibility(View.VISIBLE);
+                ivHeader.setImageResource(R.mipmap.iv_user_head);
+
             }
         }
     }
@@ -126,6 +135,8 @@ public class CenterFragment extends Fragment{
         String above = telephone.substring(telephone.length() - 4, telephone.length());
         mPhone.setText(below+"****"+above);
         quit.setVisibility(View.VISIBLE);
+        ivHeader.setImageResource(R.mipmap.iv_user_head);
+
     }
 
     @Override

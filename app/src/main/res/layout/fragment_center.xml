@@ -7,7 +7,6 @@
     android:background="@color/white_bg"
     tools:context="cn.com.creditloans.ui.fragment.CenterFragment">
 
-
     <RelativeLayout
         android:background="@drawable/center_bg"
         android:layout_width="match_parent"
@@ -18,7 +17,7 @@
             android:layout_centerHorizontal="true"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@mipmap/logo"/>
+            android:src="@mipmap/defualt_header"/>
         <TextView
             android:id="@+id/phone"
             android:layout_marginTop="20dp"
@@ -39,6 +38,9 @@
         stv:sLeftTextColor="@color/text_color_66"
         stv:sRightIconRes="@mipmap/arrow"
         stv:sRightIconHeight="15dp"
+        stv:sShapeSolidColor="@color/white"
+        stv:sUseShape="true"
+        stv:sUseRipple="false"
         stv:sRightIconWidth="10dp">
     </com.allen.library.SuperTextView>
     <com.allen.library.SuperTextView
@@ -51,6 +53,9 @@
         stv:sLeftTextString="关注微信公众号"
         stv:sRightIconRes="@mipmap/arrow"
         stv:sRightIconHeight="15dp"
+        stv:sShapeSolidColor="@color/white"
+        stv:sUseShape="true"
+        stv:sUseRipple="false"
         stv:sRightIconWidth="10dp">
     </com.allen.library.SuperTextView>
         <com.allen.library.SuperTextView

@@ -161,10 +161,11 @@ public class LoginActivity extends BaseActivity {
                     SPUtil.putString("token",token);
                     SPUtil.putString("phone",phone);
                     if(!TextUtils.isEmpty(mproductId)){
-                        EventBus.getDefault().post(new LoginEvent(phone));
-                        Intent intent=new Intent(LoginActivity.this,ProductDetailActivity.class);
-                        intent.putExtra("id", mproductId);
-                        startActivity(intent);
+                            EventBus.getDefault().post(new LoginEvent(phone));
+                            Intent intent=new Intent(LoginActivity.this,ProductDetailActivity.class);
+                            intent.putExtra("id", mproductId);
+                            startActivity(intent);
+
                     }else {
                         Intent intent=new Intent();
                         intent.putExtra("phone",phone);

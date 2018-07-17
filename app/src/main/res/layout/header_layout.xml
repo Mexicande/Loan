@@ -89,16 +89,23 @@
         </RelativeLayout>
 
     </RelativeLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/main_rv"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="76dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="4dp"
-        android:background="@null"
-        android:scrollbars="none" >
-    </android.support.v7.widget.RecyclerView>
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="140dp">
+        </android.support.v4.view.ViewPager>
+      <cn.com.creditloans.view.indicator.CircleIndicator
+          android:id="@+id/indicator_default"
+          android:layout_width="match_parent"
+          app:ci_animator="@anim/default_alpha"
+          android:layout_height="30dp">
+      </cn.com.creditloans.view.indicator.CircleIndicator>
+
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
