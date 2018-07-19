@@ -15,14 +15,16 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.actiivty.MainActivity">
+        <activity android:name=".ui.actiivty.SplashActivity"
+            android:theme="@style/FirstTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".ui.actiivty.MainActivity"
+            android:screenOrientation="portrait"/>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -36,10 +38,14 @@
         <activity
             android:name=".ui.actiivty.HtmlActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.actiivty.LoginActivity" />
-        <activity android:name=".ui.actiivty.RegisterActivity" />
-        <activity android:name=".ui.actiivty.ProductDetailActivity" />
-        <activity android:name=".ui.actiivty.AboutActivity"></activity>
+        <activity android:name=".ui.actiivty.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.actiivty.RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.actiivty.ProductDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.actiivty.AboutActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

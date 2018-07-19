@@ -16,7 +16,7 @@ public interface Api {
     String RECOMMEND_LIST=HOST+"ios/olap/producttj";
     /** 急速**/
     String QUICK_LIST=HOST+"ios/olap/productjs";
-
+    String FIND_URL="http://kjdwebv2.kjdai.net/loginchannelV3.html?channel=xiaoxiannv&flavor=xiaoxiannv";
     interface  LOGIN{
         /** 验证码获取**/
         String GETCODE=HOST+"ios/olap/getLoginCode";
