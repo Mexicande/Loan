@@ -48,8 +48,6 @@ public class RegisterActivity extends BaseActivity {
     Button btCode;
     @BindView(R.id.bt_register)
     SuperButton btRegister;
-    @BindView(R.id.ed_pw)
-    PowerfulEditText edPw;
     private Boolean flag=false;
     private CaptchaTimeCount captchaTimeCount;
     @Override
@@ -84,12 +82,7 @@ public class RegisterActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(charSequence.toString().length()==6&&flag){
-                    edPw.setVisibility(View.VISIBLE);
-                }else {
-                    edPw.setVisibility(View.GONE);
-                }
-                if(charSequence.toString().length()==6&&edPw.getText().toString().length()>5&&edPhone.getText().toString().length()==11){
+                if(charSequence.toString().length()==6&&edPhone.getText().toString().length()==11){
                     btRegister.setEnabled(true);
                     btRegister.setUseShape();
                 }else {
@@ -106,29 +99,7 @@ public class RegisterActivity extends BaseActivity {
         edPhone.addTextListener(new PowerfulEditText.TextListener() {
             @Override
             public void onTextChanged(CharSequence s, int start, int count, int after) {
-                if(s.toString().length()==11&&edPw.getText().toString().length()>5&&edCode.getText().toString().length()==6){
-                    btRegister.setEnabled(true);
-                    btRegister.setUseShape();
-                }else {
-                    btRegister.setEnabled(false);
-                    btRegister.setUseShape();
-                }
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        edPw.addTextListener(new PowerfulEditText.TextListener() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int count, int after) {
-                if(s.toString().length()>5&&edCode.getText().toString().length()==6&&edPhone.getText().toString().length()==11){
+                if(s.toString().length()==11&&edCode.getText().toString().length()==6){
                     btRegister.setEnabled(true);
                     btRegister.setUseShape();
                 }else {
@@ -203,19 +174,17 @@ public class RegisterActivity extends BaseActivity {
 
         final String phone = edPhone.getText().toString();
         String code = edCode.getText().toString();
-        String pw = edPw.getText().toString();
 
         JSONObject jsonObject=new JSONObject();
         try {
             jsonObject.put("phone",phone);
-            jsonObject.put("password",pw);
             jsonObject.put("message_yzm",code);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
-        ApiService.GET_SERVICE(Api.LOGIN.REGISTER, jsonObject, new OnRequestDataListener() {
+        ApiService.GET_SERVICE(Api.LOGIN.LOGIN, jsonObject, new OnRequestDataListener() {
             @Override
             public void requestSuccess(int code, JSONObject json) {
                 if(hud.isShowing()){

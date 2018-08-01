@@ -14,6 +14,7 @@ import java.util.List;
 import cn.com.creditloans.App;
 import cn.com.creditloans.R;
 import cn.com.creditloans.model.Product;
+import cn.com.creditloans.view.GlideRoundTransform;
 
 /**
  *
@@ -39,6 +40,7 @@ public class HotAdapter extends BaseQuickAdapter<Product.JrrmBean, BaseViewHolde
                 .setText(R.id.minrate,item.getMinrate());
         RequestOptions requestOptions=new RequestOptions()
                 .centerCrop()
+                .transform(new GlideRoundTransform(mContext,10))
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(App.getApp())
                 .load(item.getImg())

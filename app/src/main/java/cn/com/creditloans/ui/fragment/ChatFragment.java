@@ -87,7 +87,7 @@ public class ChatFragment extends DialogFragment {
             case R.id.copy:
                 ClipboardManager cmb = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
                 if (cmb != null) {
-                    cmb.setText("口袋查询");
+                    cmb.setText("有信花花");
                 }
                 getWechatApi();
                 break;

@@ -144,7 +144,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 ClipboardManager cmb = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
                 if (cmb != null) {
-                    cmb.setText("口袋查询");
+                    cmb.setText("有信花花");
                 }
                 getWechatApi();
             }

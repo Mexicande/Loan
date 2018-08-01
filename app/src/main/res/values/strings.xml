@@ -11,9 +11,9 @@
     <!-- error-->
     <string name="net_error">网络请求失败</string>
 
-    <string name="wechat">关注【口袋查询】微信公众号\n更多新口子，在线帮你贷</string>
+    <string name="wechat">关注【有信花花】微信公众号\n更多新口子，在线帮你贷</string>
     <string name="product_list">产品大全</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
-    <string name="chat">请前往微信搜索并关注\n\"口袋查询\"</string>
+    <string name="chat">请前往微信搜索并关注\n\"有信花花\"</string>
 </resources>

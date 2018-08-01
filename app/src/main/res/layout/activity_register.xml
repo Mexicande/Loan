@@ -82,33 +82,6 @@
                 android:theme="@style/MyEditText"
                 />
         </RelativeLayout>
-        <View
-            android:layout_width="match_parent"
-            android:background="@color/bg_color_ee"
-            android:layout_height="1dp"/>
-        <cn.com.creditloans.view.editext.PowerfulEditText
-            android:id="@+id/ed_pw"
-            android:visibility="gone"
-            android:layout_toRightOf="@id/phone"
-            android:layout_centerVertical="true"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:paddingRight="15dp"
-            android:paddingLeft="15dp"
-            android:drawablePadding="15dp"
-            app:leftDrawableWidth="20dp"
-            app:leftDrawableHeight="20dp"
-            android:drawableLeft="@mipmap/icon_pwd"
-            android:lines="1"
-            android:hint="密码"
-            android:maxLength="20"
-            android:inputType="textPassword"
-            android:textSize="15sp"
-            android:background="@null"
-            android:textColorHint="@color/bg_color_99"
-            app:theme="@style/MyEditText"
-            app:funcType="canWatchPwd"
-            />
     </LinearLayout>
     <com.allen.library.SuperButton
         android:id="@+id/bt_register"
