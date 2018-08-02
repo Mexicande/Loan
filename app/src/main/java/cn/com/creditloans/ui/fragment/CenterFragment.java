@@ -15,13 +15,18 @@ import com.allen.library.SuperTextView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.com.creditloans.R;
+import cn.com.creditloans.common.Api;
+import cn.com.creditloans.common.ApiService;
 import cn.com.creditloans.intr.LoginListener;
+import cn.com.creditloans.intr.OnRequestDataListener;
 import cn.com.creditloans.model.LoginEvent;
 import cn.com.creditloans.ui.actiivty.AboutActivity;
 import cn.com.creditloans.ui.actiivty.LoginActivity;
@@ -46,6 +51,7 @@ public class CenterFragment extends Fragment{
     Unbinder unbinder;
     private final int REQUESTION_CODE=1000;
     private final int RESULT_CODE=200;
+    private String chatName;
 
     public CenterFragment() {
         // Required empty public constructor
@@ -60,7 +66,27 @@ public class CenterFragment extends Fragment{
         unbinder = ButterKnife.bind(this, view);
         EventBus.getDefault().register(this);
         initView();
+        getdate();
         return view;
+    }
+
+    private void getdate() {
+        ApiService.GET_SERVICE(Api.STATUS.WEICHAT, new JSONObject(), new OnRequestDataListener() {
+            @Override
+            public void requestSuccess(int code, JSONObject json) {
+                try {
+                    JSONObject data = json.getJSONObject("data");
+                    chatName= data.getString("publicNumber");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void requestFailure(int code, String msg) {
+
+            }
+        });
     }
 
     private void initView() {
@@ -91,8 +117,8 @@ public class CenterFragment extends Fragment{
                 ActivityUtils.startActivity(AboutActivity.class);
                 break;
             case R.id.super_chat:
-                ChatFragment chatFragment=new ChatFragment();
-                chatFragment.show(getFragmentManager(),"wechatFragment");
+                ChatFragment chatFragment = ChatFragment.newInstance(chatName);
+                chatFragment.show(getChildFragmentManager(),"chatFragment");
                 break;
             case R.id.quit:
                 SPUtil.clear();
@@ -101,7 +127,6 @@ public class CenterFragment extends Fragment{
                 Intent intent=new Intent(getActivity(), LoginActivity.class);
                 startActivityForResult(intent,REQUESTION_CODE);
                 ivHeader.setImageResource(R.mipmap.defualt_header);
-
                 break;
             default:
                 break;

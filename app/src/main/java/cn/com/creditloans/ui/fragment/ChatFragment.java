@@ -18,11 +18,17 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.com.creditloans.R;
+import cn.com.creditloans.common.Api;
+import cn.com.creditloans.common.ApiService;
+import cn.com.creditloans.intr.OnRequestDataListener;
 import cn.com.creditloans.utils.ToastUtils;
 
 /**
@@ -40,6 +46,15 @@ public class ChatFragment extends DialogFragment {
     @BindView(R.id.copy)
     TextView copy;
     Unbinder unbinder;
+    private String chatName;
+    public static ChatFragment newInstance(String  str) {
+        ChatFragment instance = new ChatFragment();
+        Bundle args = new Bundle();
+        args.putString("name",str);
+        instance.setArguments(args);
+        return instance;
+
+    }
 
     public ChatFragment() {
         // Required empty public constructor
@@ -61,7 +76,18 @@ public class ChatFragment extends DialogFragment {
             wlp.height = WindowManager.LayoutParams.WRAP_CONTENT;
             window.setAttributes(wlp);
         }
+        getDate();
         return view;
+    }
+
+    private void getDate() {
+        Bundle arguments = getArguments();
+
+        if(arguments!=null){
+            chatName = arguments.getString("name");
+            str.setText("请前往微信搜索并关注\n\""+chatName+"\"");
+
+        }
     }
 
 
@@ -87,8 +113,11 @@ public class ChatFragment extends DialogFragment {
             case R.id.copy:
                 ClipboardManager cmb = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
                 if (cmb != null) {
-                    cmb.setText("有信花花");
-                }
+                    if(chatName!=null){
+                        cmb.setText(chatName);
+                    }else {
+                        cmb.setText("有信花花");
+                    }                }
                 getWechatApi();
                 break;
             default:

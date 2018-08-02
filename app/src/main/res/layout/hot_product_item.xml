@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/quota"
                 android:textSize="11sp"
-                android:textColor="@color/text_color_66"
+                android:textColor="@color/text_color_red"
                 android:text="5000"
                 />
             <TextView

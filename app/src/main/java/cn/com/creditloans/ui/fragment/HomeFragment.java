@@ -90,7 +90,9 @@ public class HomeFragment extends Fragment {
     private final int REQUESTION_CODE=10000;
     private final int RESULT_CODE=200;
     private  List<Banner> banners1;
+    private String chatName;
     private int bannerIndex;
+
     // 消息滚动滚动
     Handler h = new Handler() {
         public void handleMessage(Message msg) {
@@ -144,7 +146,11 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 ClipboardManager cmb = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
                 if (cmb != null) {
-                    cmb.setText("有信花花");
+                    if(chatName!=null){
+                        cmb.setText(chatName);
+                    }else {
+                        cmb.setText("有信花花");
+                    }
                 }
                 getWechatApi();
             }
@@ -213,12 +219,13 @@ public class HomeFragment extends Fragment {
     }
 
 
-    private TextView tvMore;
+    private TextView tvMore,mWeichat_name;
     private LinearLayout wechat;
     private View getFooter() {
         View inflate = View.inflate(getActivity(), R.layout.home_foot_layout, null);
         tvMore=inflate.findViewById(R.id.tv_more);
         wechat=inflate.findViewById(R.id.wechat);
+        mWeichat_name=inflate.findViewById(R.id.weichat_name);
         return inflate;
 
     }
@@ -354,6 +361,24 @@ public class HomeFragment extends Fragment {
                     Banner[] banners = gson.fromJson(data, Banner[].class);
                     banners1 = Arrays.asList(banners);
                     newFragmentBanner.setData(banners1,null);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void requestFailure(int code, String msg) {
+
+            }
+        });
+
+        ApiService.GET_SERVICE(Api.STATUS.WEICHAT, new JSONObject(), new OnRequestDataListener() {
+            @Override
+            public void requestSuccess(int code, JSONObject json) {
+                try {
+                    JSONObject data = json.getJSONObject("data");
+                    chatName= data.getString("publicNumber");
+                    mWeichat_name.setText("关注【"+chatName+"】微信公众号\n更多新口子，在线帮你贷");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

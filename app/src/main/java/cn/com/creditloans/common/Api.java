@@ -31,6 +31,9 @@ public interface Api {
         String GETPRODUCT_DETAIL=HOST+"ios/olap/productDetail";
         /**版本更新**/
         String UPDATE=HOST+"vest/version";
+
+        /** 公众号名称 **/
+        String WEICHAT=HOST+"ios/olap/getPublicNumber";
     }
 
 
